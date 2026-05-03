@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>core_test</title>
+    </head>
+    <style>
+    .flight_input {
+        text-transform: uppercase;
+    }
+    </style>
+
+    <body>
+        <input
+            type="text"
+            id="dep"
+            class="flight_input"
+            placeholder="depature"
+            maxlength="4"
+        />
+        <input
+            type="text"
+            id="arr"
+            class="flight_input"
+            placeholder="arrival"
+            maxlength="4"
+        />
+        <button id="enter">search</button>
+        <div id="result"></div>
+        <script type="module" src="./wasm.js"></script>
+    </body>
+</html>

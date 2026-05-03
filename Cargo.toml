@@ -1,0 +1,21 @@
+[package]
+name = "ciel_core2"
+version = "2.0.4"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+name = "ciel_core2"
+
+[profile.release]
+lto = true
+strip = true
+panic = 'abort'
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = ["--enable-bulk-memory", "-Os"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+serde = { version = "1.0", default-features = false, features = ["derive", "alloc"] }
+postcard = { version = "1.1", features = ["alloc"] }
