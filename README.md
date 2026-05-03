@@ -7,7 +7,7 @@
   
 **検索方法**: 事前にソートされたデータに対しbinary_search_by()を使用  
   
-**出力内容**: SimBriefのurlにパラメータに出発地、到着地、便名を反映させたボタン
+**出力内容**: SimBriefのurlにパラメータ（出発地、到着地、便名）を反映させたボタン
 
 ## 検索エンジンを使用したサイト
 [https://hamunisu.github.io/Ciel_Airlines/](https://hamunisu.github.io/Ciel_Airlines/)
