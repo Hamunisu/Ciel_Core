@@ -1,4 +1,4 @@
-// update: 2026/05/03
+// update: 2026/06/03
 
 use serde::Deserialize;
 use std::sync::OnceLock;
@@ -27,12 +27,12 @@ static FLIGHTS_BYTES: &[u8] = include_bytes!("../postcard/number.ciel");
 static FLIGHTS_DATA: OnceLock<Vec<FlightsData>> = OnceLock::new();
 
 #[wasm_bindgen]
-pub fn search(deperture: &str, arrival: &str) -> String {
+pub fn search(departure: &str, arrival: &str) -> String {
     // 入力確認処理
-    let deperture = escape(deperture).to_uppercase();
+    let departure = escape(departure).to_uppercase();
     let arrival = escape(arrival).to_uppercase();
 
-    let (chk_dep, chk_arr) = match input_check(deperture.trim(), arrival.trim()) {
+    let (chk_dep, chk_arr) = match input_check(departure.trim(), arrival.trim()) {
         Ok((d, a)) => (d, a),
         Err(e) => return e,
     };

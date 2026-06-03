@@ -1,4 +1,4 @@
-use crate::{FLIGHTS_BYTES, FLIGHTS_DATA, ICAO_BYTES, ICAO_DATA, IcaoData, FlightsData};
+use crate::{FLIGHTS_BYTES, FLIGHTS_DATA, FlightsData, ICAO_BYTES, ICAO_DATA, IcaoData};
 
 // スクリプト対策 (in lib::search)
 pub(crate) fn escape(content: &str) -> String {
@@ -30,19 +30,19 @@ fn format_check(input: &str) -> Result<String, String> {
 }
 
 // inputが適切かどうか確認 (in lib::search)
-pub(crate) fn input_check(deperture: &str, arrival: &str) -> Result<(String, String), String> {
+pub(crate) fn input_check(departure: &str, arrival: &str) -> Result<(String, String), String> {
     // 入力確認処理
-    if deperture.is_empty() && arrival.is_empty() {
+    if departure.is_empty() && arrival.is_empty() {
         Err("<p>空港名を入力してください</p>".to_string())
-    } else if deperture.is_empty() {
+    } else if departure.is_empty() {
         Err("<p>出発空港を入力してください</p>".to_string())
     } else if arrival.is_empty() {
         Err("<p>到着空港を入力してください</p>".to_string())
     } else {
-        let f_deperture = format_check(deperture)?;
+        let f_departure = format_check(departure)?;
         let f_arrival = format_check(arrival)?;
 
-        Ok((f_deperture, f_arrival))
+        Ok((f_departure, f_arrival))
     }
 }
 
@@ -69,11 +69,11 @@ fn airport(input: &str) -> Result<String, String> {
 }
 
 // main
-pub(crate) fn c_core(deperture: &str, arrival: &str) -> String {
+pub(crate) fn c_core(departure: &str, arrival: &str) -> String {
     let flights = get_flights();
 
     // 入力消滅->DBの文字に変換
-    let (icao_dep, icao_arr) = match (airport(deperture), airport(arrival)) {
+    let (icao_dep, icao_arr) = match (airport(departure), airport(arrival)) {
         (Ok(d), Ok(a)) => (d, a),
         (Err(_), Ok(_)) => {
             return "<p>入力された出発空港は就航リストにありませんでした</p>".to_string();
