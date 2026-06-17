@@ -97,13 +97,13 @@ pub(crate) fn c_core(departure: &str, arrival: &str) -> String {
             for num in &flight.num {
                 res.push_str(&format!(
                         r#"<div class="result_a_frame">
-                            <a href="https://dispatch.simbrief.com/options/custom?airline=CJA&fltnum={0}&orig={1}&dest={2}" target="_blank" rel="noopener noreferrer">CJA{}便のフライト</a>
+                            <a href="https://dispatch.simbrief.com/options/custom?airline=CJA&amp;fltnum={0}&amp;orig={1}&amp;dest={2}" target="_blank" rel="noopener noreferrer">CJA{0}便のフライト</a>
                     </div>"#, num, flight.dep, flight.arr));
             }
         }
         Err(_) => res.push_str(&format!(r#"<p>フライトが見つかりませんでした<br>臨時便を作成しますか？</p>
             <div class="result_a_frame">
-                    <a href="https://dispatch.simbrief.com/options/custom?airline=CJA&orig={0}&dest={1}" target="_blank" rel="noopener noreferrer">CJA臨時便のフライト</a>
+                    <a href="https://dispatch.simbrief.com/options/custom?airline=CJA&amp;orig={0}&amp;dest={1}" target="_blank" rel="noopener noreferrer">CJA臨時便のフライト</a>
             </div>"#, icao_dep, icao_arr))
     };
 
